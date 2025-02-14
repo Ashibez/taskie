@@ -1,0 +1,25 @@
+[build]
+  base = "/"
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "18.17.0"
+  REACT_APP_NAME = "Taskie"
+  REACT_APP_VERSION = "1.0.0"
+  REACT_APP_STORAGE_KEY = "taskie_prod_data"
+  REACT_APP_MAX_BOARDS = "unlimited"
+  REACT_APP_MAX_LISTS_PER_BOARD = "unlimited"
+  REACT_APP_MAX_CARDS_PER_LIST = "unlimited"
+  REACT_APP_AUTO_SAVE_INTERVAL = "60000"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production.environment]
+  REACT_APP_ENV = "production"
+
+[context.deploy-preview.environment]
+  REACT_APP_ENV = "preview" 

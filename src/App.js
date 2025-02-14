@@ -17,6 +17,23 @@ function App() {
         { icon: BsGraphUp, text: 'Progress' }
     ];
 
+    const APP_NAME = process.env.REACT_APP_NAME;
+    const STORAGE_KEY = process.env.REACT_APP_STORAGE_KEY;
+    const AUTO_SAVE_INTERVAL = parseInt(process.env.REACT_APP_AUTO_SAVE_INTERVAL);
+    const MAX_BOARDS = process.env.REACT_APP_MAX_BOARDS;
+
+    useEffect(() => {
+        const savedData = localStorage.getItem(STORAGE_KEY);
+        if (savedData) {
+            try {
+                const parsedData = JSON.parse(savedData);
+                // Use the data...
+            } catch (error) {
+                console.error('Error parsing saved data:', error);
+            }
+        }
+    }, []);
+
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % illustrations.length);
@@ -32,6 +49,26 @@ function App() {
                 setIsTransitioning(false);
             }, 50);
         }, 300);
+    };
+
+    // Example usage
+    useEffect(() => {
+        // Auto-save data
+        const interval = setInterval(() => {
+            const data = {
+                boards: boards,
+                recentBoards: recentBoards
+            };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }, AUTO_SAVE_INTERVAL);
+
+        return () => clearInterval(interval);
+    }, [boards, recentBoards]);
+
+    // Check limits
+    const canCreateBoard = () => {
+        if (MAX_BOARDS === 'unlimited') return true;
+        return boards.length < parseInt(MAX_BOARDS);
     };
 
     return (
