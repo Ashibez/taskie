@@ -1,0 +1,227 @@
+.list {
+    background-color: var(--bg-list);
+    border-radius: 12px;
+    min-width: 290px;
+    max-width: 290px;
+    height: fit-content;
+    max-height: calc(100vh - 90px);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    scroll-behavior: smooth;
+    transition: transform 0.2s ease;
+    animation: flipIn 0.6s ease-out;
+    transform-origin: left center;
+    backface-visibility: hidden;
+    animation-fill-mode: backwards;
+}
+
+.list-header {
+    padding: 8px 8px 12px;
+    margin-bottom: 8px;
+    border-bottom: none;
+}
+
+.list-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.list-header input {
+    width: 100%;
+    border: 2px solid #0079bf;
+    border-radius: 3px;
+    padding: 4px 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #172b4d;
+    background: white;
+}
+
+.list-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.cards-container {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 1px;
+    padding: 0 4px;
+    margin-right: -4px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.cards-container::-webkit-scrollbar {
+    display: none;
+}
+
+.cards-container:hover,
+.cards-container:active,
+.cards-container:focus {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.cards-container:hover::-webkit-scrollbar,
+.cards-container:active::-webkit-scrollbar,
+.cards-container:focus::-webkit-scrollbar {
+    display: none;
+}
+
+.add-card-button {
+    margin-top: 8px;
+    padding: 8px;
+    background: none;
+    color: var(--text-secondary);
+    width: 100%;
+    text-align: left;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.add-card-button::before {
+    content: "+";
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.add-card-button:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    opacity: 1;
+}
+
+.add-card-form {
+    margin-top: 8px;
+}
+
+.add-card-form textarea {
+    width: 100%;
+    border: none;
+    resize: none;
+    padding: 8px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    font-family: var(--font-pridi);
+}
+
+.add-card-form textarea:focus {
+    outline: 2px solid var(--blue-btn);
+    outline-offset: -2px;
+}
+
+.add-card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.add-card-actions button {
+    padding: 6px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.add-card-actions button:first-child {
+    background-color: #0079bf;
+    color: white;
+    border: none;
+}
+
+.add-card-actions button:last-child {
+    background: none;
+    border: none;
+    color: #6b778c;
+}
+
+/* Add these styles for the list delete button */
+.list-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-list-button {
+    visibility: hidden;
+    background: none;
+    border: none;
+    color: #6b778c;
+    padding: 4px 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-left: 8px;
+    line-height: 1;
+}
+
+.list:hover .delete-list-button {
+    visibility: visible;
+}
+
+.delete-list-button:hover {
+    background-color: rgba(9, 30, 66, 0.08);
+    color: #172b4d;
+}
+
+/* Add this style for drag and drop visual feedback */
+.cards-container.dragging-over {
+    background-color: rgba(9, 30, 66, 0.04);
+    border-radius: 3px;
+}
+
+/* Add styles for list dragging */
+.list {
+    transition: transform 0.2s ease;
+}
+
+.list.is-dragging {
+    background-color: var(--bg-list);
+    opacity: 0.9;
+    transform: rotate(1deg);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Add styles for list drag over state */
+.lists-container.dragging-over {
+    background-color: var(--hover-bg);
+    border-radius: 8px;
+}
+
+/* Add these animation keyframes */
+@keyframes flipIn {
+    from {
+        opacity: 0;
+        transform: perspective(400px) rotateY(90deg);
+    }
+    to {
+        opacity: 1;
+        transform: perspective(400px) rotateY(0deg);
+    }
+}
+
+/* Add staggered delay for each list */
+.lists-container > *:nth-child(1) { animation-delay: 0.1s; }
+.lists-container > *:nth-child(2) { animation-delay: 0.2s; }
+.lists-container > *:nth-child(3) { animation-delay: 0.3s; }
+.lists-container > *:nth-child(4) { animation-delay: 0.4s; }
+.lists-container > *:nth-child(5) { animation-delay: 0.5s; }
+.lists-container > *:nth-child(6) { animation-delay: 0.6s; }

@@ -1,0 +1,15 @@
+taskie/
+├── src/
+│   ├── components/
+│   │   ├── Board/
+│   │   ├── List/
+│   │   ├── Card/
+│   │   └── Navbar/
+│   ├── styles/
+│   │   ├── Board.css
+│   │   ├── List.css
+│   │   ├── Card.css
+│   │   ├── Navbar.css
+│   │   └── index.css
+│   ├── App.js
+│   └── index.js 

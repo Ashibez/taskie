@@ -1,0 +1,33 @@
+npx create-react-app taskie
+cd taskie
+
+# Create directories
+mkdir -p src/components/Board
+mkdir -p src/components/List
+mkdir -p src/components/Card
+mkdir -p src/components/Navbar
+mkdir -p src/styles
+
+# Create files
+touch src/components/Navbar/Navbar.jsx
+touch src/styles/Navbar.css
+touch src/styles/index.css
+
+# Stop the server (Ctrl+C)
+^C
+
+# Delete node_modules and package-lock.json
+rd /s /q node_modules
+del package-lock.json
+
+# Install older version of npm globally
+npm install -g npm@6
+
+# Install dependencies
+npm install
+
+# Install specific version of react-beautiful-dnd
+npm install react-beautiful-dnd@13.1.0
+
+# Start the server
+npm start

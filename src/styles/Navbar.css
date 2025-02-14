@@ -1,0 +1,949 @@
+.navbar {
+    background-color: #1a1a1a;
+    padding: 0.6rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-left, .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar-logo h1 {
+    font-family: var(--font-tourney);
+    color: white;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-right: 2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.navbar-logo h1:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-button {
+    font-family: var(--font-pt-sans);
+    background: none;
+    color: #b6c2cf;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.arrow-down {
+    font-size: 0.7rem;
+    margin-top: 2px;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    transition: all 0.2s ease;
+}
+
+.nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.nav-button:hover .arrow-down {
+    opacity: 1;
+    color: white;
+}
+
+.create-button {
+    background: none !important;
+    color: #b6c2cf !important;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.create-button:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+}
+
+.nav-profile {
+    margin-left: 1rem;
+}
+
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    background-color: #2d2d2d;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.profile-avatar:hover {
+    background-color: #3d3d3d;
+}
+
+/* Dropdown styles */
+.create-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    background-color: var(--bg-dark);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    width: 304px;
+    z-index: 1000;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.dropdown-item {
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.dropdown-item-title {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.dropdown-item-description {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* Update create button styles */
+.create-button.active {
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+/* Update modal styles for scrolling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 48px 0;
+    z-index: 1100;
+    overflow-y: auto;
+}
+
+.create-board-modal {
+    background-color: var(--bg-dark);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    margin: auto;
+    max-height: calc(100vh - 96px);
+    display: flex;
+    flex-direction: column;
+}
+
+.create-board-modal .modal-header {
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-dark);
+    z-index: 1;
+}
+
+.create-board-modal .modal-header h3 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.create-board-modal .modal-header button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.create-board-modal .modal-header button:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+.create-board-modal .modal-body {
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.create-board-modal input {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: var(--input-bg);
+    border: none;
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+}
+
+.create-board-modal input:focus {
+    outline: 2px solid var(--blue-btn);
+    outline-offset: -2px;
+}
+
+.create-board-button {
+    width: 100%;
+    padding: 8px 16px;
+    background-color: var(--blue-btn);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.create-board-button:hover {
+    background-color: var(--blue-btn-hover);
+}
+
+.create-board-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.board-preview {
+    height: 120px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    color: white;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.background-picker h4 {
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.background-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.color-options,
+.image-options {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.color-option,
+.image-option {
+    width: 40px;
+    height: 32px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.image-option {
+    background-size: cover;
+    background-position: center;
+}
+
+.color-option.selected,
+.image-option.selected {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+.board-title-input {
+    margin: 16px 0;
+}
+
+.board-title-input label {
+    display: block;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+}
+
+/* Update visibility picker styles */
+.visibility-picker {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.visibility-picker label {
+    display: block;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+/* Update visibility dropdown styles */
+.visibility-dropdown {
+    position: relative;
+}
+
+.visibility-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background-color: var(--input-bg);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-primary);
+    text-align: left;
+}
+
+.visibility-toggle:hover {
+    background-color: var(--hover-bg);
+}
+
+.visibility-toggle .selected-visibility {
+    flex: 1;
+}
+
+.visibility-toggle .selected-description {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.visibility-toggle .arrow-down {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.visibility-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background-color: var(--bg-dark);
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1002;
+    overflow: hidden;
+}
+
+.visibility-option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-primary);
+    text-align: left;
+}
+
+.visibility-option:hover {
+    background-color: var(--hover-bg);
+}
+
+.visibility-option.selected {
+    background-color: var(--hover-bg);
+}
+
+.visibility-option .check {
+    margin-left: auto;
+    color: var(--blue-btn);
+    font-weight: bold;
+}
+
+.visibility-option .icon {
+    font-size: 1.2rem;
+}
+
+.option-text {
+    flex: 1;
+}
+
+.option-description {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+/* Update template animation styles */
+.template-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 8px !important;
+    overflow: visible;
+}
+
+.template-animation {
+    margin-left: 16px;
+    width: 140px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.template-item:hover .template-animation {
+    opacity: 1;
+}
+
+.profile-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.profile-modal {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    background-color: var(--bg-dark);
+    box-shadow: -2px 0 12px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    animation: slideIn 0.3s ease forwards;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    to {
+        right: 0;
+    }
+}
+
+.profile-modal-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-modal-header h3 {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.profile-modal-header button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.profile-modal-header button:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+.profile-modal-content {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.profile-avatar-large {
+    width: 64px;
+    height: 64px;
+    background-color: #2d2d2d;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.profile-details h4 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.profile-details p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.profile-section {
+    margin-bottom: 24px;
+}
+
+.profile-section h5 {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.profile-menu-item {
+    width: 100%;
+    padding: 12px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    text-align: left;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+}
+
+.profile-menu-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.profile-menu-item span {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+.profile-menu-item:hover span {
+    opacity: 1;
+}
+
+.sign-out-button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--bg-card);
+    border: none;
+    color: #ef4444;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin-top: 16px;
+}
+
+.sign-out-button:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Update scrollbar for the modal content */
+.profile-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.profile-modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.profile-modal-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.profile-modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    background-color: var(--bg-dark);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    width: 320px;
+    z-index: 1000;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.dropdown-section {
+    padding-bottom: 12px;
+}
+
+.dropdown-section h3 {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    padding: 0 4px;
+}
+
+.workspace-item,
+.recent-board-item {
+    width: 100%;
+    padding: 8px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.workspace-item:hover,
+.recent-board-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.workspace-icon {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.workspace-info,
+.board-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.workspace-type,
+.board-workspace {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.board-preview-icon {
+    width: 32px;
+    height: 24px;
+    border-radius: 4px;
+    background-color: var(--blue-btn);
+    background-size: cover;
+    background-position: center;
+}
+
+.dropdown-footer {
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+}
+
+.create-workspace-btn {
+    width: 100%;
+    padding: 8px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.create-workspace-btn:hover {
+    background-color: var(--hover-bg);
+}
+
+.no-recent {
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 16px;
+    font-size: 0.9rem;
+}
+
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 4px;
+    margin-bottom: 12px;
+}
+
+.header-icon {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.dropdown-description {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    padding: 0 4px;
+}
+
+.starred-board-item {
+    width: 100%;
+    padding: 8px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.starred-board-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.star-icon {
+    margin-left: auto;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.templates-menu {
+    width: 380px;
+}
+
+.template-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.template-card {
+    width: 100%;
+    background-color: var(--blue-btn);
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.template-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.template-card-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.template-icon {
+    font-size: 1.4rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.template-info {
+    flex: 1;
+}
+
+.template-title {
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.template-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+}
+
+.template-preview {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.preview-list {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px;
+    border-radius: 4px;
+    min-width: 100px;
+}
+
+.preview-list-title {
+    color: white;
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+    opacity: 0.9;
+}
+
+.preview-card {
+    height: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    margin-bottom: 4px;
+}
+
+/* Update nav button active state */
+.nav-button.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.nav-button.active .arrow-down {
+    opacity: 1;
+    color: white;
+}
+
+.board-timestamp {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-left: auto;
+    opacity: 0.8;
+}
+
+.recent-board-item {
+    justify-content: space-between;
+}
+
+.recent-board-item:hover .board-timestamp {
+    opacity: 1;
+}
+
+.templates-modal {
+    background-color: var(--bg-dark);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    margin: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.templates-modal .modal-body {
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 16px;
+}
+
+.templates-grid .template-card {
+    height: 100%;
+}
+
+/* Update existing template card styles */
+.template-card {
+    background-color: var(--blue-btn);
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.template-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
