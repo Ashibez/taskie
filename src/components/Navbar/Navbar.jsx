@@ -5,7 +5,14 @@ import Lottie from 'lottie-react';
 import templateAnimation from '../../assets/template-animation.json';
 import TemplateAnimation from '../TemplateAnimation';
 
-function Navbar({ onBoardChange }) {
+function Navbar({ 
+    onBoardChange, 
+    boards, 
+    setBoards, 
+    recentBoards, 
+    setRecentBoards,
+    canCreateBoard 
+}) {
     const [showDropdown, setShowDropdown] = useState(false);
     const [showBoardModal, setShowBoardModal] = useState(false);
     const [newBoardTitle, setNewBoardTitle] = useState('');
@@ -14,7 +21,6 @@ function Navbar({ onBoardChange }) {
     const [showVisibilityDropdown, setShowVisibilityDropdown] = useState(false);
     const dropdownRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [boards, setBoards] = useState([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [showRecentDropdown, setShowRecentDropdown] = useState(false);
     const [showWorkspacesDropdown, setShowWorkspacesDropdown] = useState(false);
@@ -24,7 +30,6 @@ function Navbar({ onBoardChange }) {
     const [showTemplatesDropdown, setShowTemplatesDropdown] = useState(false);
     const starredDropdownRef = useRef(null);
     const templatesDropdownRef = useRef(null);
-    const [recentBoards, setRecentBoards] = useState([]);
     const [showTemplatesList, setShowTemplatesList] = useState(false);
 
     const backgroundColors = [
@@ -122,6 +127,11 @@ function Navbar({ onBoardChange }) {
     }, [recentBoards]);
 
     const handleCreateBoard = () => {
+        if (!canCreateBoard()) {
+            // Maybe show a message about board limit
+            return;
+        }
+        
         if (newBoardTitle.trim()) {
             setIsLoading(true);
             

@@ -3,7 +3,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import List from '../List/List';
 import '../../styles/Board.css';
 
-function Board({ boardData }) {
+function Board({ boardData, onUpdate }) {
     // Add key to track board changes
     const [boardKey, setBoardKey] = useState(Date.now());
     
@@ -12,11 +12,7 @@ function Board({ boardData }) {
         setBoardKey(Date.now());
         // Initialize lists from boardData or create default lists
         if (boardData?.lists) {
-            setLists(boardData.lists.map(list => ({
-                ...list,
-                id: list.id || `list-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-                cards: list.cards || []
-            })));
+            setLists(boardData.lists);
         } else {
             const timestamp = Date.now();
             setLists([

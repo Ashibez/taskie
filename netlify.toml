@@ -1,6 +1,6 @@
 [build]
   base = "/"
-  command = "npm run build"
+  command = "CI= npm run build"
   publish = "build"
 
 [build.environment]
@@ -12,6 +12,7 @@
   REACT_APP_MAX_LISTS_PER_BOARD = "unlimited"
   REACT_APP_MAX_CARDS_PER_LIST = "unlimited"
   REACT_APP_AUTO_SAVE_INTERVAL = "60000"
+  CI = "false"
 
 [[redirects]]
   from = "/*"

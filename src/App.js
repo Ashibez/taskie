@@ -11,6 +11,11 @@ function App() {
     const [boards, setBoards] = useState([]);
     const [recentBoards, setRecentBoards] = useState([]);
 
+    const APP_NAME = process.env.REACT_APP_NAME;
+    const STORAGE_KEY = process.env.REACT_APP_STORAGE_KEY;
+    const AUTO_SAVE_INTERVAL = parseInt(process.env.REACT_APP_AUTO_SAVE_INTERVAL || '30000');
+    const MAX_BOARDS = process.env.REACT_APP_MAX_BOARDS;
+
     const illustrations = [
         { icon: BsKanban, text: 'Organize' },
         { icon: BsListTask, text: 'Track' },
@@ -19,11 +24,7 @@ function App() {
         { icon: BsGraphUp, text: 'Progress' }
     ];
 
-    const APP_NAME = process.env.REACT_APP_NAME;
-    const STORAGE_KEY = process.env.REACT_APP_STORAGE_KEY;
-    const AUTO_SAVE_INTERVAL = parseInt(process.env.REACT_APP_AUTO_SAVE_INTERVAL);
-    const MAX_BOARDS = process.env.REACT_APP_MAX_BOARDS;
-
+    // Load saved data
     useEffect(() => {
         const savedData = localStorage.getItem(STORAGE_KEY);
         if (savedData) {
@@ -37,12 +38,26 @@ function App() {
         }
     }, [STORAGE_KEY]);
 
+    // Carousel effect
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % illustrations.length);
         }, 3000);
         return () => clearInterval(timer);
-    }, []);
+    }, [illustrations.length]);
+
+    // Auto-save data
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const data = {
+                boards,
+                recentBoards
+            };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }, AUTO_SAVE_INTERVAL);
+
+        return () => clearInterval(interval);
+    }, [boards, recentBoards, STORAGE_KEY, AUTO_SAVE_INTERVAL]);
 
     const handleBoardChange = (board) => {
         setIsTransitioning(true);
@@ -53,18 +68,6 @@ function App() {
             }, 50);
         }, 300);
     };
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const data = {
-                boards: boards,
-                recentBoards: recentBoards
-            };
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-        }, AUTO_SAVE_INTERVAL || 30000);
-
-        return () => clearInterval(interval);
-    }, [boards, recentBoards, STORAGE_KEY, AUTO_SAVE_INTERVAL]);
 
     const canCreateBoard = () => {
         if (MAX_BOARDS === 'unlimited') return true;
