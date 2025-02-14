@@ -1,3 +1,14 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .list {
     background-color: var(--bg-list);
     border-radius: 12px;
@@ -12,10 +23,7 @@
     margin: 0;
     scroll-behavior: smooth;
     transition: transform 0.2s ease;
-    animation: flipIn 0.6s ease-out;
-    transform-origin: left center;
-    backface-visibility: hidden;
-    animation-fill-mode: backwards;
+    animation: fadeIn 0.3s ease-out;
 }
 
 .list-header {
@@ -205,23 +213,3 @@
     background-color: var(--hover-bg);
     border-radius: 8px;
 }
-
-/* Add these animation keyframes */
-@keyframes flipIn {
-    from {
-        opacity: 0;
-        transform: perspective(400px) rotateY(90deg);
-    }
-    to {
-        opacity: 1;
-        transform: perspective(400px) rotateY(0deg);
-    }
-}
-
-/* Add staggered delay for each list */
-.lists-container > *:nth-child(1) { animation-delay: 0.1s; }
-.lists-container > *:nth-child(2) { animation-delay: 0.2s; }
-.lists-container > *:nth-child(3) { animation-delay: 0.3s; }
-.lists-container > *:nth-child(4) { animation-delay: 0.4s; }
-.lists-container > *:nth-child(5) { animation-delay: 0.5s; }
-.lists-container > *:nth-child(6) { animation-delay: 0.6s; }

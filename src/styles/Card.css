@@ -947,3 +947,36 @@ button:disabled {
 .card {
     min-height: 50px; /* Match your card height */
 }
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+    .card {
+        padding: 8px;
+        margin-bottom: 6px;
+    }
+
+    .card-title {
+        font-size: 0.9rem;
+    }
+
+    .card-actions {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .card-modal {
+        width: 90%;
+        max-height: 90vh;
+        margin: 5vh auto;
+    }
+
+    .card-modal-content {
+        padding: 16px;
+    }
+
+    /* Make buttons bigger for touch */
+    .card-action-button {
+        padding: 8px;
+        min-height: 44px;
+    }
+}

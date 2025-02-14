@@ -47,7 +47,7 @@
     align-items: center;
     gap: 6px;
 }
-
+=   
 .board-button:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
@@ -130,4 +130,68 @@ body {
     align-items: center;
     height: 100vh;
     color: var(--text-secondary);
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+    .board {
+        padding: 8px;
+        height: calc(100vh - 56px); /* Account for mobile navbar */
+    }
+
+    .lists-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 16px;
+        gap: 12px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .board-header {
+        padding: 12px 8px;
+    }
+
+    .board-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .add-list-button {
+        min-width: 200px;
+        height: 40px;
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    /* Show horizontal scroll indicator */
+    .lists-container::-webkit-scrollbar {
+        height: 4px;
+        display: block;
+    }
+
+    .lists-container::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+    }
+
+    /* Improve touch scrolling */
+    .list {
+        flex-shrink: 0;
+        max-width: 280px;
+        margin-bottom: 8px;
+    }
+}
+
+/* Small phones */
+@media screen and (max-width: 480px) {
+    .board {
+        padding: 4px;
+    }
+
+    .list {
+        max-width: 260px;
+    }
+
+    .add-list-button {
+        min-width: 180px;
+    }
 }
