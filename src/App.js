@@ -8,6 +8,8 @@ function App() {
     const [currentBoard, setCurrentBoard] = useState(null);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [boards, setBoards] = useState([]);
+    const [recentBoards, setRecentBoards] = useState([]);
 
     const illustrations = [
         { icon: BsKanban, text: 'Organize' },
@@ -27,12 +29,13 @@ function App() {
         if (savedData) {
             try {
                 const parsedData = JSON.parse(savedData);
-                // Use the data...
+                if (parsedData.boards) setBoards(parsedData.boards);
+                if (parsedData.recentBoards) setRecentBoards(parsedData.recentBoards);
             } catch (error) {
                 console.error('Error parsing saved data:', error);
             }
         }
-    }, []);
+    }, [STORAGE_KEY]);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -51,29 +54,33 @@ function App() {
         }, 300);
     };
 
-    // Example usage
     useEffect(() => {
-        // Auto-save data
         const interval = setInterval(() => {
             const data = {
                 boards: boards,
                 recentBoards: recentBoards
             };
             localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-        }, AUTO_SAVE_INTERVAL);
+        }, AUTO_SAVE_INTERVAL || 30000);
 
         return () => clearInterval(interval);
-    }, [boards, recentBoards]);
+    }, [boards, recentBoards, STORAGE_KEY, AUTO_SAVE_INTERVAL]);
 
-    // Check limits
     const canCreateBoard = () => {
         if (MAX_BOARDS === 'unlimited') return true;
-        return boards.length < parseInt(MAX_BOARDS);
+        return boards.length < parseInt(MAX_BOARDS || '10');
     };
 
     return (
         <div className="app">
-            <Navbar onBoardChange={handleBoardChange} />
+            <Navbar 
+                onBoardChange={handleBoardChange}
+                boards={boards}
+                setBoards={setBoards}
+                recentBoards={recentBoards}
+                setRecentBoards={setRecentBoards}
+                canCreateBoard={canCreateBoard}
+            />
             <div className={`app-container ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
                 {currentBoard ? (
                     <Board boardData={currentBoard} />
